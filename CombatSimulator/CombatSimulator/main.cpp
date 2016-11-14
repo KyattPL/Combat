@@ -1,7 +1,6 @@
 #include <iostream>   //Biblioteki.
 #include <random>
 #include <ctime>
-#include <string>
 
 using namespace std;   //Standaryzowanie komend.
 
@@ -80,6 +79,16 @@ int main()             //G³ówna funkcja.
 
 		}
 
+		if (numZombies == 0)                                        //Jeœli ¿aden zombie nie pozosta³ przy ¿yciu to zakoñcz walkê.
+		{
+			cout << "Humans won!\n";
+			cout << "There are " << numSurvivors << " humans left.\n";
+			cout << numZombies2 << " zombies and " << numSurvivors2 - numSurvivors << " survivors lost their lives." << endl << endl;
+			cout << "Battle ended in " << x << " turns\n";
+
+			break;           //Przerwanie pêtli.
+		}
+
 		if (zombChance(generateEngine) > survHit)					  //Jeœli wylosuje coœ powy¿ej szans na atak zombiego zaatakuje on
 		{															  //za iloœæ obra¿eñ zombie.
 
@@ -104,17 +113,7 @@ int main()             //G³ówna funkcja.
 
 			break;            //Przerwanie pêtli.
 		}
-
-		if (numZombies == 0)                                        //Jeœli ¿aden zombie nie pozosta³ przy ¿yciu to zakoñcz walkê.
-		{
-			cout << "Humans won!\n";
-			cout << "There are " << numSurvivors << " humans left.\n";
-			cout << numZombies2 << " zombies and " << numSurvivors2 - numSurvivors << " survivors lost their lives." << endl << endl;
-			cout << "Battle ended in " << x << " turns\n";
-
-			break;           //Przerwanie pêtli.
-		}
-
+		
 	}
 
 	system("PAUSE");         //Zatrzymanie konsoli.
