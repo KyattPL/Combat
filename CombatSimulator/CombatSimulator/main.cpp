@@ -1,8 +1,11 @@
 #include <iostream>   //Biblioteki.
 #include <random>
 #include <ctime>
+#include <windows.h>
 
 using namespace std;   //Standaryzowanie komend.
+
+int customStatsFUN();
 
 int main()             //G³ówna funkcja.
 {
@@ -10,8 +13,6 @@ int main()             //G³ówna funkcja.
 
 	int numSurvivors = 0, numZombies = 0, survHealth = 100, zombHealth = 50, survDamage = 25, zombDamage = 25, total;     //Zmienne.
 	int numSurvivors2, numZombies2, zombHealth2, survHealth2, x = 0;
-
-	char customStats;                                       //U¿ytkownik wpisuje y lub n zale¿nie od tego czy chcê modyfikowaæ statystyki.
 
 	float survHit = 75, zombHit = 25;
 
@@ -31,31 +32,7 @@ int main()             //G³ówna funkcja.
 		return 0;
 	}
 
-	cout << "Type 'y' if u want to change survivors and zombie stats, and 'n' if you would like to stick to original.\n";
-
-	cin >> customStats;
-
-	if (customStats == 'y')
-	{
-		cout << "Zombie health:\n";
-		cin >> zombHealth;
-
-		cout << "Zombie Damage:\n";
-		cin >> zombDamage;
-
-		cout << "Zombie attack chance:\n";
-		cin >> zombHit;
-
-		cout << "Survivor health:\n";
-		cin >> survHealth;
-
-		cout << "Survivor Damage:\n";
-		cin >> survDamage;
-
-		cout << "Survivor attack chance:\n";
-		cin >> survHit;
-
-	}
+	zombHealth, zombDamage, zombHit, survHit, survDamage, survHealth = customStatsFUN();
 
 	survHealth2 = survHealth;
 	zombHealth2 = zombHealth;
@@ -65,7 +42,9 @@ int main()             //G³ówna funkcja.
 	numSurvivors2 = numSurvivors;                   //Liczba zombie i survivorów przed bitw¹.
 	numZombies2 = numZombies;
 
-	total = numSurvivors + numZombies;              //Liczba wszystkich uczestników bitwy.
+	total = numSurvivors + numZombies;	//Liczba wszystkich uczestników bitwy.
+
+	system("cls");
 
 	for (int i = 0; i <= total; x++)                  //G³ówna pêtla programu.
 	{
@@ -127,5 +106,47 @@ int main()             //G³ówna funkcja.
 	system("PAUSE");         //Zatrzymanie konsoli.
 	return 0;                //Zwrócenie poprawnej wartoœci do systemu.
 
+}
 
+int customStatsFUN()
+{
+	int zombHealth, zombDamage, zombHit, survHealth, survDamage, survHit;
+	char customStats;
+
+	cout << "Type 'y' if u want to change survivors and zombie stats, and 'n' if you would like to stick to original.\n";
+
+	cin >> customStats;
+
+	if (customStats == 'y')
+	{
+		cout << "Zombie health:\n";
+		cin >> zombHealth;
+
+		cout << "Zombie Damage:\n";
+		cin >> zombDamage;
+
+		cout << "Zombie attack chance:\n";
+		cin >> zombHit;
+
+		cout << "Survivor health:\n";
+		cin >> survHealth;
+
+		cout << "Survivor Damage:\n";
+		cin >> survDamage;
+
+		cout << "Survivor attack chance:\n";
+		cin >> survHit;
+
+	}
+	else
+	{
+		zombHealth = 50;
+		zombDamage = 25;
+		zombHit = 25;
+		survHealth = 100;
+		survDamage = 25;
+		survHit = 75;
+	}
+
+	return zombHealth, zombDamage, zombHit, survHealth, survDamage, survHit;
 }

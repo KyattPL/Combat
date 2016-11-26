@@ -1,4 +1,4 @@
 ﻿  main.cpp
-c:\users\siema\documents\visual studio 2015\projects\combat-master\combatsimulator\combatsimulator\main.cpp(9): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\siema\documents\visual studio 2015\projects\combat-master\combatsimulator\combatsimulator\main.cpp(12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   CombatSimulator.vcxproj -> C:\Users\siema\Documents\Visual Studio 2015\Projects\Combat-master\CombatSimulator\Debug\CombatSimulator.exe
   CombatSimulator.vcxproj -> C:\Users\siema\Documents\Visual Studio 2015\Projects\Combat-master\CombatSimulator\Debug\CombatSimulator.pdb (Partial PDB)
