@@ -8,8 +8,8 @@ int main()             //G³ówna funkcja.
 {
 	mt19937 generateEngine(time(NULL));    //Generowanie liczby.
 
-	int numSurvivors = 0, numZombies = 0, survHealth = 100, zombHealth = 50, survDamage = 25, zombDamage = 25, total = 0;     //Zmienne.
-	int numSurvivors2 = 0, numZombies2 = 0, zombHealth2 = 0, survHealth2 = 0, x = 0;
+	int numSurvivors = 0, numZombies = 0, survHealth = 100, zombHealth = 50, survDamage = 25, zombDamage = 25, total;     //Zmienne.
+	int numSurvivors2, numZombies2, zombHealth2, survHealth2, x = 0;
 
 	char customStats;                                       //U¿ytkownik wpisuje y lub n zale¿nie od tego czy chcê modyfikowaæ statystyki.
 
@@ -22,6 +22,14 @@ int main()             //G³ówna funkcja.
 
 	cout << "Type how many zombies will take part in a combat\n";
 	cin >> numZombies;
+
+	if(numSurvivors <=0 || numZombies <=0)
+	{
+		cout << "Please provide correct value.\n";
+
+		system("PAUSE");
+		return 0;
+	}
 
 	cout << "Type 'y' if u want to change survivors and zombie stats, and 'n' if you would like to stick to original.\n";
 
