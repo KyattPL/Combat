@@ -5,26 +5,23 @@
 
 using namespace std;   //Standaryzowanie komend.
 
+int number1();
+int number2();
 int customStatsFUN();
+void mainLoop(int zombHit, int zombHealth, int survDamage, int total, int numZombies, int zombHealth2, int numSurivors, int numZombies2, int numSurvivors2,int survHit,int zombDamage,int survHealth,int survHealth2);
 
 int main()             //G³ówna funkcja.
 {
-	mt19937 generateEngine(time(NULL));    //Generowanie liczby.
 
-	int numSurvivors = 0, numZombies = 0, survHealth = 100, zombHealth = 50, survDamage = 25, zombDamage = 25, total;     //Zmienne.
-	int numSurvivors2, numZombies2, zombHealth2, survHealth2, x = 0;
+	int numSurvivors, numZombies, survHealth, zombHealth = 50, survDamage = 25, zombDamage = 25;     //Zmienne.
+	int numSurvivors2, numZombies2, zombHealth2, survHealth2, total;
 
 	float survHit = 75, zombHit = 25;
 
-	cout << "** Combat Simulator v.2.0 **\n";
+	numSurvivors = number1();
+	numZombies = number2();
 
-	cout << "Type how many survivors will take part in a combat\n";
-	cin >> numSurvivors;
-
-	cout << "Type how many zombies will take part in a combat\n";
-	cin >> numZombies;
-
-	if(numSurvivors <=0 || numZombies <=0)
+	if (numSurvivors <= 0 || numZombies <= 0)
 	{
 		cout << "Please provide correct value.\n";
 
@@ -46,8 +43,84 @@ int main()             //G³ówna funkcja.
 
 	system("cls");
 
+	mainLoop(zombHit, zombHealth, survDamage, total, numZombies, zombHealth2, numSurvivors, numZombies2, numSurvivors2, survHit, zombDamage, survHealth, survHealth2);
+
+	system("PAUSE");         //Zatrzymanie konsoli.
+	return 0;                //Zwrócenie poprawnej wartoœci do systemu.
+
+}
+int number1()
+{
+	int numSurvivors;
+
+	cout << "** Combat Simulator v.2.0 **\n";
+
+	cout << "Type how many survivors will take part in a combat\n";
+	cin >> numSurvivors;
+
+	return numSurvivors;
+}
+int number2()
+{
+	int numZombies;
+
+	cout << "Type how many zombies will take part in a combat\n";
+	cin >> numZombies;
+
+	return numZombies;
+}
+
+int customStatsFUN()
+{
+	int zombHealth, zombDamage, zombHit, survHealth, survDamage, survHit;
+	char customStats;
+
+	cout << "Type 'y' if u want to change survivors and zombie stats, and 'n' if you would like to stick to original.\n";
+
+	cin >> customStats;
+
+	if (customStats == 'y')
+	{
+		cout << "Zombie health:\n";
+		cin >> zombHealth;
+
+		cout << "Zombie Damage:\n";
+		cin >> zombDamage;
+
+		cout << "Zombie attack chance:\n";
+		cin >> zombHit;
+
+		cout << "Survivor health:\n";
+		cin >> survHealth;
+
+		cout << "Survivor Damage:\n";
+		cin >> survDamage;
+
+		cout << "Survivor attack chance:\n";
+		cin >> survHit;
+
+	}
+	else
+	{
+		zombHealth = 50;
+		zombDamage = 25;
+		zombHit = 25;
+		survHealth = 100;
+		survDamage = 25;
+		survHit = 75;
+	}
+
+	return zombHealth, zombDamage, zombHit, survHealth, survDamage, survHit;
+}
+
+void mainLoop(int zombHit, int zombHealth, int survDamage, int total, int numZombies, int zombHealth2, int numSurvivors, int numZombies2, int numSurvivors2, int survHit, int zombDamage, int survHealth, int survHealth2)
+{
+	int x = 0;
+
 	for (int i = 0; i <= total; x++)                  //G³ówna pêtla programu.
 	{
+		static mt19937 generateEngine(time(NULL));    //Generowanie liczby.
+
 		uniform_real_distribution<float> survChance(0, 100);    //Szansa na trafienie przez cz³owieka i zombiego  (od 0-100).
 		uniform_real_distribution<float> zombChance(0, 100);
 
@@ -100,53 +173,6 @@ int main()             //G³ówna funkcja.
 
 			break;            //Przerwanie pêtli.
 		}
-		
-	}
-
-	system("PAUSE");         //Zatrzymanie konsoli.
-	return 0;                //Zwrócenie poprawnej wartoœci do systemu.
-
-}
-
-int customStatsFUN()
-{
-	int zombHealth, zombDamage, zombHit, survHealth, survDamage, survHit;
-	char customStats;
-
-	cout << "Type 'y' if u want to change survivors and zombie stats, and 'n' if you would like to stick to original.\n";
-
-	cin >> customStats;
-
-	if (customStats == 'y')
-	{
-		cout << "Zombie health:\n";
-		cin >> zombHealth;
-
-		cout << "Zombie Damage:\n";
-		cin >> zombDamage;
-
-		cout << "Zombie attack chance:\n";
-		cin >> zombHit;
-
-		cout << "Survivor health:\n";
-		cin >> survHealth;
-
-		cout << "Survivor Damage:\n";
-		cin >> survDamage;
-
-		cout << "Survivor attack chance:\n";
-		cin >> survHit;
 
 	}
-	else
-	{
-		zombHealth = 50;
-		zombDamage = 25;
-		zombHit = 25;
-		survHealth = 100;
-		survDamage = 25;
-		survHit = 75;
-	}
-
-	return zombHealth, zombDamage, zombHit, survHealth, survDamage, survHit;
 }
